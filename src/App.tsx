@@ -26,13 +26,13 @@ function App() {
       transactionAppUrl: "http://localhost:4204",
       chartAppUrl: "http://localhost:4205",
       
-      manifest: "manifestScion.json",
+      manifest: "/o/my-app/static/json/manifestScion.json",
       hostManifestRelativeURL: ""
       };
 
      const 	 platformConfig = [
   {symbolicName: 'host-app', manifestUrl: `${constants.manifest}`},
-  {symbolicName: 'header-app', manifestUrl: `manifestScionHeader.json`}
+  {symbolicName: 'header-app', manifestUrl: `http://localhost:4201/manifest.json`}
   // {symbolicName: 'navbar-app', manifestUrl: `${constants.navbarAppUrl}/${constants.manifest}`},
   // {symbolicName: 'capital-app', manifestUrl: `${constants.capitalAppUrl}/${constants.manifest}`},
   // {symbolicName: 'chart-app', manifestUrl: `${constants.chartAppUrl}/${constants.manifest}`},
