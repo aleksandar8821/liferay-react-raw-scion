@@ -22,13 +22,18 @@
   "devDependencies": {
     "cpy-cli": "^3.1.1",
     "parcel": "1.12.3",
-    "sass": "^1.26.8"
+    "sass": "^1.26.8",
+    "liferay-npm-build-support": "^2.26.0",
+    "liferay-npm-bundler": "^2.26.0",
+    "liferay-npm-bundler-preset-create-react-app": "^2.26.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build:liferay": "lnbs-build",
+    "deploy:liferay": "npm run build:liferay && lnbs-deploy"
   },
   "eslintConfig": {
     "extends": [
@@ -47,5 +52,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "portlet": {
+    "com.liferay.portlet.display-category": "category.sample",
+    "javax.portlet.name": "myapp",
+    "javax.portlet.security-role-ref": "power-user,user",
+    "javax.portlet.resource-bundle": "content.Language",
+    "com.liferay.portlet.instanceable": true
   }
 }
