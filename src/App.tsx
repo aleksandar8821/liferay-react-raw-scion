@@ -18,16 +18,6 @@ function App() {
 
   useEffect(() => {
 
-    setTimeout(() => {
-      
-      
-      const host: any = document.getElementById('outletHost');
-      
-      host.innerHtml = `<sci-router-outlet name="HEADER"></sci-router-outlet>`;
-      
-    }, 3000);
-
-
     const constants = {
       hostAppUrl: "http://localhost:4200",
       headerAppUrl: "http://localhost:4201",
