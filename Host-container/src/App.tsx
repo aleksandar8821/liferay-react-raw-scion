@@ -16,9 +16,9 @@ function App() {
 
   useEffect(() => {
 
-    console.log('mounted');
+    console.log('host mounted');
 
-    const hostManifestPath = "/o/my-app/scion/manifest.json"
+    const hostManifestPath = "/o/host-app/scion/manifest.json"
 
     const platformConfig: ApplicationConfig[] = [
       { symbolicName: 'host-app', manifestUrl: hostManifestPath },
@@ -29,17 +29,16 @@ function App() {
       // Start the platform
       await MicrofrontendPlatform.startHost(platformConfig, { symbolicName: 'host-app' });
 
-      Beans.get(OutletRouter).navigate(`http://localhost:4201/header-app.html`, { outlet: 'HEADER' });
+      // Beans.get(OutletRouter).navigate(`http://localhost:4201/header-app.html`, { outlet: 'HEADER' });
 
     }
 
-    init();
+    // init();
   }, [])
 
   return (
     <div id="nca-host-app-wrapper">
-      NCA
-      <sci-router-outlet name="HEADER"></sci-router-outlet>
+      NCA HOST
     </div>
   );
 }

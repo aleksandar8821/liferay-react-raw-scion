@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './App.css';
 
-import { ApplicationConfig, MicrofrontendPlatform, OutletRouter } from '@scion/microfrontend-platform';
+import { MicrofrontendPlatform, OutletRouter } from '@scion/microfrontend-platform';
 import { Beans } from '@scion/toolkit/bean-manager';
 
 declare global {
@@ -16,30 +16,22 @@ function App() {
 
   useEffect(() => {
 
-    console.log('mounted');
+    console.log('header mounted');
 
-    const hostManifestPath = "/o/my-app/scion/manifest.json"
-
-    const platformConfig: ApplicationConfig[] = [
-      { symbolicName: 'host-app', manifestUrl: hostManifestPath },
-      { symbolicName: 'header-app', manifestUrl: `http://localhost:4201/manifest.json` }
-    ];
-
-    async function init() {
-      // Start the platform
-      await MicrofrontendPlatform.startHost(platformConfig, { symbolicName: 'host-app' });
+    async function connect() {
+      // Connect to the platform
+      await MicrofrontendPlatform.connectToHost({ symbolicName: 'header-app' });
 
       Beans.get(OutletRouter).navigate(`http://localhost:4201/header-app.html`, { outlet: 'HEADER' });
-
     }
 
-    init();
+    // connect();
   }, [])
 
   return (
     <div id="nca-host-app-wrapper">
-      NCA
-      <sci-router-outlet name="HEADER"></sci-router-outlet>
+      NCA HEADER
+      {/* <sci-router-outlet name="HEADER"></sci-router-outlet> */}
     </div>
   );
 }
