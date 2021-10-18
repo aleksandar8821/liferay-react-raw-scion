@@ -16,6 +16,8 @@ function App() {
 
   useEffect(() => {
 
+    console.log('mounted');
+
     const hostManifestPath = "/o/my-app/scion/manifest.json"
 
     const platformConfig: ApplicationConfig[] = [
@@ -36,6 +38,7 @@ function App() {
 
   return (
     <div id="nca-host-app-wrapper">
+      NCA
       <sci-router-outlet name="HEADER"></sci-router-outlet>
     </div>
   );
