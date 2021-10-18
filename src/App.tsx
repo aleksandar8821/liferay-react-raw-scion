@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
-import logo from './logo.svg';
+import { useEffect } from 'react';
 import './App.css';
 
-import {  MicrofrontendPlatform, OutletRouter, PlatformConfig } from '@scion/microfrontend-platform';
+import { ApplicationConfig, MicrofrontendPlatform, OutletRouter } from '@scion/microfrontend-platform';
 import { Beans } from '@scion/toolkit/bean-manager';
 
 declare global {
@@ -15,69 +14,29 @@ declare global {
 
 function App() {
 
-
   useEffect(() => {
 
-    const constants = {
-      hostAppUrl: "http://localhost:4200",
-      headerAppUrl: "http://localhost:4201",
-      navbarAppUrl: "http://localhost:4202",
-      capitalAppUrl: "http://localhost:4203",
-      transactionAppUrl: "http://localhost:4204",
-      chartAppUrl: "http://localhost:4205",
-      
-      manifest: "/o/my-app/static/json/manifestScion.json",
-      hostManifestRelativeURL: ""
-      };
+    const hostManifestPath = "/o/my-app/scion/manifest.json"
 
-     const 	 platformConfig = [
-  {symbolicName: 'host-app', manifestUrl: `${constants.manifest}`},
-  {symbolicName: 'header-app', manifestUrl: `http://localhost:4201/manifest.json`}
-  // {symbolicName: 'navbar-app', manifestUrl: `${constants.navbarAppUrl}/${constants.manifest}`},
-  // {symbolicName: 'capital-app', manifestUrl: `${constants.capitalAppUrl}/${constants.manifest}`},
-  // {symbolicName: 'chart-app', manifestUrl: `${constants.chartAppUrl}/${constants.manifest}`},
-  // {symbolicName: 'transactions-app', manifestUrl: `${constants.transactionAppUrl}/${constants.manifest}`},
-  ];
+    const platformConfig: ApplicationConfig[] = [
+      { symbolicName: 'host-app', manifestUrl: hostManifestPath },
+      { symbolicName: 'header-app', manifestUrl: `http://localhost:4201/manifest.json` }
+    ];
 
-   async function init() {
-    // Start the platform
-    await MicrofrontendPlatform.startHost(platformConfig, {symbolicName: 'host-app'});
-  
-    Beans.get(OutletRouter).navigate(`http://localhost:4201/header-app.html`, {outlet: 'HEADER'});
-  
-    // Beans.get(OutletRouter).navigate(`${constants.navbarAppUrl}/navbar-app.html`, {outlet: 'NAVBAR'});
-  
-    // Beans.get(OutletRouter).navigate(`${constants.chartAppUrl}/index.html`, {outlet: 'MAIN-SCREEN-ASIDE'});
-  
-    // Beans.get(OutletRouter).navigate(`${constants.capitalAppUrl}/index.html`);
+    async function init() {
+      // Start the platform
+      await MicrofrontendPlatform.startHost(platformConfig, { symbolicName: 'host-app' });
+
+      Beans.get(OutletRouter).navigate(`http://localhost:4201/header-app.html`, { outlet: 'HEADER' });
+
     }
 
     init();
-  console.log('mounted');
   }, [])
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-
-
-      <div id="outletHost" ></div>
-
+    <div id="nca-host-app-wrapper">
       <sci-router-outlet name="HEADER"></sci-router-outlet>
-
     </div>
   );
 }

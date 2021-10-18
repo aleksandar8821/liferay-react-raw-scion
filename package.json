@@ -26,17 +26,18 @@
     "liferay-npm-bundler-preset-create-react-app": "^2.26.0",
     "parcel": "1.12.3",
     "sass": "^1.26.8",
-    "shx": "^0.3.3"
+    "shx": "^0.3.3",
+    "wait-on": "^6.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:liferay": "lnbs-build",
-    "deploy:liferay": "npm run build:liferay && npm run copy-assets && npm run copy-assets-json",
+    "build:liferay": "lnbs-build && npm run copy-assets && npm run copy-scion-manifest",
+    "deploy:liferay": "npm run build:liferay && shx echo Rebuilding to include Scion manifest... && npm run build:liferay && lnbs-deploy",
     "copy-assets": "lnbs-copy-assets",
-    "copy-assets-json": "shx cp -r ./build/json/ ./build.liferay/jar/static/json/ && shx echo JSON assets coppied"
+    "copy-scion-manifest": "shx rm -rf ./build.liferay/jar/scion/ && shx cp -r ./build/scion/ ./build.liferay/jar/scion/ && wait-on ./build.liferay/jar/scion/manifest.json && shx echo Scion manifest coppied "
   },
   "eslintConfig": {
     "extends": [
