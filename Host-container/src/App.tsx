@@ -23,7 +23,8 @@ function App() {
     const platformConfig: ApplicationConfig[] = [
       { symbolicName: 'host-app', manifestUrl: hostManifestPath },
       { symbolicName: 'header-app', manifestUrl: `http://localhost:4201/manifest.json` },
-      { symbolicName: 'navbar-app', manifestUrl: `http://localhost:4202/manifest.json` }
+      { symbolicName: 'navbar-app', manifestUrl: `http://localhost:4202/manifest.json` },
+      { symbolicName: 'capital-app', manifestUrl: `http://localhost:4203/manifest.json` }
     ];
 
     async function init() {
@@ -32,6 +33,8 @@ function App() {
 
       Beans.get(OutletRouter).navigate(`http://localhost:4201/header-app.html`, { outlet: 'HEADER' });
       Beans.get(OutletRouter).navigate(`http://localhost:4202/navbar-app.html`, { outlet: 'NAVBAR' });
+
+      Beans.get(OutletRouter).navigate(`http://localhost:4203/index.html`);
 
     }
 

@@ -23,7 +23,7 @@ function App() {
   return (
     <div id="nca-capital-app-wrapper">
       NCA CAPITAL
-      <sci-router-outlet name="CAPITAL"></sci-router-outlet>
+      <sci-router-outlet></sci-router-outlet>
     </div>
   );
 }
