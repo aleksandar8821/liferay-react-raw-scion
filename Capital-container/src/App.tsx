@@ -16,14 +16,14 @@ function App() {
 
   useEffect(() => {
 
-    console.log('navbar mounted');
+    console.log('capital mounted');
 
   }, [])
 
   return (
-    <div id="nca-navbar-app-wrapper">
-      NCA NAVBAR
-      <sci-router-outlet name="NAVBAR"></sci-router-outlet>
+    <div id="nca-capital-app-wrapper">
+      NCA CAPITAL
+      <sci-router-outlet name="CAPITAL"></sci-router-outlet>
     </div>
   );
 }
