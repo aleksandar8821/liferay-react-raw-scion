@@ -22,7 +22,8 @@ function App() {
 
     const platformConfig: ApplicationConfig[] = [
       { symbolicName: 'host-app', manifestUrl: hostManifestPath },
-      { symbolicName: 'header-app', manifestUrl: `http://localhost:4201/manifest.json` }
+      { symbolicName: 'header-app', manifestUrl: `http://localhost:4201/manifest.json` },
+      { symbolicName: 'navbar-app', manifestUrl: `http://localhost:4202/manifest.json` }
     ];
 
     async function init() {
@@ -30,6 +31,7 @@ function App() {
       await MicrofrontendPlatform.startHost(platformConfig, { symbolicName: 'host-app' });
 
       Beans.get(OutletRouter).navigate(`http://localhost:4201/header-app.html`, { outlet: 'HEADER' });
+      Beans.get(OutletRouter).navigate(`http://localhost:4202/navbar-app.html`, { outlet: 'NAVBAR' });
 
     }
 
