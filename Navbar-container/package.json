@@ -1,5 +1,5 @@
 {
-  "name": "header-app",
+  "name": "navbar-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -59,8 +59,8 @@
   },
   "portlet": {
     "com.liferay.portlet.display-category": "category.sample",
-    "javax.portlet.name": "headerapp",
-    "javax.portlet.display-name": "NCA header app",
+    "javax.portlet.name": "navbarapp",
+    "javax.portlet.display-name": "NCA navbar app",
     "javax.portlet.security-role-ref": "power-user,user",
     "javax.portlet.resource-bundle": "content.Language",
     "com.liferay.portlet.instanceable": true

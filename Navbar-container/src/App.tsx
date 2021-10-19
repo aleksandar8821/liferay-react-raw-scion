@@ -16,14 +16,14 @@ function App() {
 
   useEffect(() => {
 
-    console.log('header mounted');
+    console.log('navbar mounted');
 
   }, [])
 
   return (
-    <div id="nca-header-app-wrapper">
-      NCA HEADER
-      <sci-router-outlet name="HEADER"></sci-router-outlet>
+    <div id="nca-navbar-app-wrapper">
+      NCA NAVBAR
+      <sci-router-outlet name="NAVBAR"></sci-router-outlet>
     </div>
   );
 }

@@ -4,7 +4,7 @@
 		"output-dir": "dist",
 		"features": {
 			"js-extender": true,
-			"web-context": "/header-app",
+			"web-context": "/navbar-app",
 			"configuration": "features/configuration.json"
 		}
 	}
