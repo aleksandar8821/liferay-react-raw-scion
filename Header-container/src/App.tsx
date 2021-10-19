@@ -18,20 +18,12 @@ function App() {
 
     console.log('header mounted');
 
-    async function connect() {
-      // Connect to the platform
-      await MicrofrontendPlatform.connectToHost({ symbolicName: 'header-app' });
-
-      Beans.get(OutletRouter).navigate(`http://localhost:4201/header-app.html`, { outlet: 'HEADER' });
-    }
-
-    // connect();
   }, [])
 
   return (
-    <div id="nca-host-app-wrapper">
+    <div id="nca-header-app-wrapper">
       NCA HEADER
-      {/* <sci-router-outlet name="HEADER"></sci-router-outlet> */}
+      <sci-router-outlet name="HEADER"></sci-router-outlet>
     </div>
   );
 }

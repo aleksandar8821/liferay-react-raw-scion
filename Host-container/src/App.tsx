@@ -29,11 +29,11 @@ function App() {
       // Start the platform
       await MicrofrontendPlatform.startHost(platformConfig, { symbolicName: 'host-app' });
 
-      // Beans.get(OutletRouter).navigate(`http://localhost:4201/header-app.html`, { outlet: 'HEADER' });
+      Beans.get(OutletRouter).navigate(`http://localhost:4201/header-app.html`, { outlet: 'HEADER' });
 
     }
 
-    // init();
+    init();
   }, [])
 
   return (
