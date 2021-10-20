@@ -46,10 +46,10 @@ function App() {
       Beans.get(OutletRouter).navigate(`${localConstants.headerAppUrl}/header-app.html`, { outlet: 'HEADER' });
       Beans.get(OutletRouter).navigate(`${localConstants.navbarAppUrl}/navbar-app.html`, { outlet: 'NAVBAR' });
       // Beans.get(OutletRouter).navigate(`${localConstants.chartAppUrl}/index.html`, { outlet: 'MAIN-SCREEN-ASIDE' });
-      // Beans.get(OutletRouter).navigate(`${localConstants.capitalAppUrl}/index.html`);
+      Beans.get(OutletRouter).navigate(`${localConstants.capitalAppUrl}/index.html`);
 
       Beans.get(OutletRouter).navigate(`${localConstants.chartAppUrl}/index.html`, { outlet: 'CHART' });
-      Beans.get(OutletRouter).navigate(`${localConstants.transactionAppUrl}/index.html`, { outlet: 'TRANSACTION' });
+      Beans.get(OutletRouter).navigate(`${localConstants.transactionAppUrl}/index.html`, { outlet: 'MAIN-SCREEN-ASIDE' });
 
 
     }

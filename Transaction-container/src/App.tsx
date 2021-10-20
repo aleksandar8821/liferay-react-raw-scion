@@ -23,7 +23,7 @@ function App() {
   return (
     <div id="nca-transaction-app-wrapper">
       NCA TRANSACTION
-      <sci-router-outlet name="TRANSACTION"></sci-router-outlet>
+      <sci-router-outlet name="MAIN-SCREEN-ASIDE"></sci-router-outlet>
     </div>
   );
 }
