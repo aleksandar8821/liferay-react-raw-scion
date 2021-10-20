@@ -1,0 +1,11 @@
+{
+	"preset": "liferay-npm-bundler-preset-create-react-app",
+	"create-jar": {
+		"output-dir": "dist",
+		"features": {
+			"js-extender": true,
+			"web-context": "/transaction-app",
+			"configuration": "features/configuration.json"
+		}
+	}
+}

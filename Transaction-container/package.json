@@ -1,0 +1,68 @@
+{
+  "name": "transaction-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/jest": "^27.0.2",
+    "@types/node": "^16.11.0",
+    "@types/react": "^17.0.30",
+    "@types/react-dom": "^17.0.9",
+    "cra-template-typescript": "1.1.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "typescript": "^4.4.4",
+    "@scion/microfrontend-platform": "^1.0.0-beta.18",
+    "@scion/toolkit": "^12.0.0-beta.2",
+    "bootstrap": "^4.5.3",
+    "jquery": "^1.9.1",
+    "popper.js": "^1.16.1",
+    "rxjs": "^6.5.5"
+  },
+  "devDependencies": {
+    "cpy-cli": "^3.1.1",
+    "liferay-npm-build-support": "^2.26.0",
+    "liferay-npm-bundler": "^2.26.0",
+    "liferay-npm-bundler-preset-create-react-app": "^2.26.0",
+    "parcel": "1.12.3",
+    "sass": "^1.26.8",
+    "shx": "^0.3.3",
+    "wait-on": "^6.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:liferay": "lnbs-build && npm run copy-assets && npm run copy-scion-manifest",
+    "deploy:liferay": "npm run build:liferay && shx echo Rebuilding to include Scion manifest... && npm run build:liferay && lnbs-deploy",
+    "copy-assets": "lnbs-copy-assets",
+    "copy-scion-manifest": "shx rm -rf ./build.liferay/jar/scion/ && shx cp -r ./build/scion/ ./build.liferay/jar/scion/ && wait-on ./build.liferay/jar/scion/manifest.json && shx echo Scion manifest coppied "
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "portlet": {
+    "com.liferay.portlet.display-category": "category.sample",
+    "javax.portlet.name": "transactionapp",
+    "javax.portlet.display-name": "NCA transaction app",
+    "javax.portlet.security-role-ref": "power-user,user",
+    "javax.portlet.resource-bundle": "content.Language",
+    "com.liferay.portlet.instanceable": true
+  }
+}
