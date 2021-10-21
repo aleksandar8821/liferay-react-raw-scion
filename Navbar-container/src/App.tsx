@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './App.css';
 
-import { MicrofrontendPlatform, OutletRouter } from '@scion/microfrontend-platform';
+import { MicrofrontendPlatform, OutletRouter, MessageClient } from '@scion/microfrontend-platform';
 import { Beans } from '@scion/toolkit/bean-manager';
 
 declare global {
@@ -12,11 +12,21 @@ declare global {
   }
 }
 
+declare var Liferay: any
+
+
 function App() {
 
   useEffect(() => {
 
     console.log('navbar mounted');
+
+    Liferay.on('headerToNavbarIPC', (event: any) => {
+
+      console.log('header to navbar received in navbar', event.message);
+      
+    })
+
 
   }, [])
 

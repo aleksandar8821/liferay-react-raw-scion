@@ -20,18 +20,42 @@ function App() {
 
     console.log('header mounted');
 
-    Liferay.on('randomNumber',function(event: any) {
+    Liferay.on('randomNumber', function (event: any) {
       var number = event.number;
 
       const messageContainer: any = document.getElementById('headerReceivedMessage');
       messageContainer.innerHTML = number;
 
-     });
+    });
+
+    Liferay.on('hostTopicMessage', function (event: any) {
+      // var message = event.message;
+
+      // const messageContainer: any = document.getElementById('headerReceivedMessage');
+      // messageContainer.innerHTML = message;
+
+      console.log('Message received from host', event.message);
+      
+
+    });
 
   }, [])
 
+  function getRandomInt(max: number) {
+    return Math.floor(Math.random() * max);
+  }
+
+  const handleClick = () => {
+    const randomNumber = getRandomInt(1000);
+    const message = 'From header ' + randomNumber;
+
+    Liferay.fire('headerToNavbarIPC', {
+      message: message
+    })
+  }
+
   return (
-    <div id="nca-header-app-wrapper">
+    <div id="nca-header-app-wrapper" onClick={handleClick}>
       NCA HEADER
       <div id="headerReceivedMessage"></div>
       <sci-router-outlet name="HEADER"></sci-router-outlet>

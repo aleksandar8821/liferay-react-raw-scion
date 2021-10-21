@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import './App.css';
 
-import { ApplicationConfig, MicrofrontendPlatform, OutletRouter } from '@scion/microfrontend-platform';
+import { ApplicationConfig, MessageClient, MicrofrontendPlatform, OutletRouter, TopicMessage } from '@scion/microfrontend-platform';
 import { Beans } from '@scion/toolkit/bean-manager';
 
 declare global {
@@ -45,6 +45,25 @@ function App() {
       // Start the platform
       await MicrofrontendPlatform.startHost(platformConfig, { symbolicName: 'host-app' });
 
+      const topic = 'mybank/:any/:any'
+
+      Liferay.on('headerToNavbarIPC', (event: any) => {
+
+        console.log('header to navbar received in host', event.message);
+
+        const topic = 'mybank/account/details'
+
+        Beans.get(MessageClient).publish(topic, event.message);
+
+      })
+  
+
+      Beans.get(MessageClient).observe$(topic).subscribe((message: TopicMessage) => {
+        console.log('Host topic message', message);
+
+        sendToHeader(message);
+      });
+
       Beans.get(OutletRouter).navigate(`${localConstants.headerAppUrl}/header-app.html`, { outlet: 'HEADER' });
       Beans.get(OutletRouter).navigate(`${localConstants.navbarAppUrl}/navbar-app.html`, { outlet: 'NAVBAR' });
       // Beans.get(OutletRouter).navigate(`${localConstants.chartAppUrl}/index.html`, { outlet: 'MAIN-SCREEN-ASIDE' });
@@ -52,8 +71,7 @@ function App() {
 
       Beans.get(OutletRouter).navigate(`${localConstants.chartAppUrl}/index.html`, { outlet: 'CHART' });
       Beans.get(OutletRouter).navigate(`${localConstants.transactionAppUrl}/index.html`, { outlet: 'MAIN-SCREEN-ASIDE' });
-
-
+    
     }
 
     init();
@@ -64,6 +82,12 @@ function App() {
     return Math.floor(Math.random() * max);
   }
 
+  const sendToHeader = (hostTopicMessage: any) => {
+    Liferay.fire('hostTopicMessage', {
+      message: hostTopicMessage
+    })
+  }
+
   const handleClick = () => {
 
     Liferay.fire('randomNumber', {
@@ -72,7 +96,7 @@ function App() {
   }
 
   return (
-    <div id="nca-host-app-wrapper" onClick={handleClick} style={{cursor: 'pointer'}}>
+    <div id="nca-host-app-wrapper" onClick={handleClick} style={{ cursor: 'pointer' }}>
       <span>NCA HOST</span>
     </div>
   );
