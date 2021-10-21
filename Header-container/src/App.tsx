@@ -12,17 +12,28 @@ declare global {
   }
 }
 
+declare var Liferay: any
+
 function App() {
 
   useEffect(() => {
 
     console.log('header mounted');
 
+    Liferay.on('randomNumber',function(event: any) {
+      var number = event.number;
+
+      const messageContainer: any = document.getElementById('headerReceivedMessage');
+      messageContainer.innerHTML = number;
+
+     });
+
   }, [])
 
   return (
     <div id="nca-header-app-wrapper">
       NCA HEADER
+      <div id="headerReceivedMessage"></div>
       <sci-router-outlet name="HEADER"></sci-router-outlet>
     </div>
   );

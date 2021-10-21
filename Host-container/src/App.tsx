@@ -12,6 +12,8 @@ declare global {
   }
 }
 
+declare var Liferay: any;
+
 function App() {
 
   const localConstants = {
@@ -55,11 +57,23 @@ function App() {
     }
 
     init();
+
   }, [])
 
+  function getRandomInt(max: number) {
+    return Math.floor(Math.random() * max);
+  }
+
+  const handleClick = () => {
+
+    Liferay.fire('randomNumber', {
+      number: getRandomInt(1000)
+    });
+  }
+
   return (
-    <div id="nca-host-app-wrapper">
-      NCA HOST
+    <div id="nca-host-app-wrapper" onClick={handleClick} style={{cursor: 'pointer'}}>
+      <span>NCA HOST</span>
     </div>
   );
 }
