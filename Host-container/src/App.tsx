@@ -89,7 +89,6 @@ function App() {
   }
 
   const handleClick = () => {
-
     Liferay.fire('randomNumber', {
       number: getRandomInt(1000)
     });

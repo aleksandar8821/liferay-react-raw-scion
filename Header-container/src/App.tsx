@@ -29,12 +29,9 @@ function App() {
     });
 
     Liferay.on('hostTopicMessage', function (event: any) {
-      // var message = event.message;
-
-      // const messageContainer: any = document.getElementById('headerReceivedMessage');
-      // messageContainer.innerHTML = message;
 
       console.log('Message received from host', event.message);
+
       const messageContainer: any = document.getElementById('headerReceivedMessage');
       messageContainer.innerHTML = event.message.body;
 

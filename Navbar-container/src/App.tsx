@@ -34,7 +34,7 @@ function App() {
   }, [])
 
   return (
-    <div id="nca-navbar-app-wrapper">
+    <div id="nca-navbar-app-wrapper" className="portlet-wrapper">
       NCA NAVBAR
       <div id="navbarReceivedMessage"></div>
       <sci-router-outlet name="NAVBAR"></sci-router-outlet>

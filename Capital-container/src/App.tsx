@@ -21,7 +21,7 @@ function App() {
   }, [])
 
   return (
-    <div id="nca-capital-app-wrapper">
+    <div id="nca-capital-app-wrapper" className="portlet-wrapper">
       NCA CAPITAL
       <sci-router-outlet></sci-router-outlet>
     </div>

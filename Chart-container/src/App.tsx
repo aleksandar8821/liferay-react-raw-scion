@@ -21,7 +21,7 @@ function App() {
   }, [])
 
   return (
-    <div id="nca-chart-app-wrapper">
+    <div id="nca-chart-app-wrapper" className="portlet-wrapper">
       NCA CHART
       <sci-router-outlet name="CHART"></sci-router-outlet>
     </div>
