@@ -97,6 +97,8 @@ function App() {
 
   return (
     <div id="nca-host-app-wrapper" onClick={handleClick} style={{ cursor: 'pointer' }}>
+      <div id="hostReceivedMessage"></div>
+
       <span>NCA HOST</span>
     </div>
   );

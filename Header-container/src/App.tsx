@@ -35,7 +35,8 @@ function App() {
       // messageContainer.innerHTML = message;
 
       console.log('Message received from host', event.message);
-      
+      const messageContainer: any = document.getElementById('headerReceivedMessage');
+      messageContainer.innerHTML = event.message.body;
 
     });
 
@@ -55,7 +56,7 @@ function App() {
   }
 
   return (
-    <div id="nca-header-app-wrapper" onClick={handleClick}>
+    <div id="nca-header-app-wrapper" className="portlet-wrapper" onClick={handleClick}>
       NCA HEADER
       <div id="headerReceivedMessage"></div>
       <sci-router-outlet name="HEADER"></sci-router-outlet>

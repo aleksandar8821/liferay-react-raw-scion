@@ -24,6 +24,9 @@ function App() {
     Liferay.on('headerToNavbarIPC', (event: any) => {
 
       console.log('header to navbar received in navbar', event.message);
+
+      const messageContainer: any = document.getElementById('navbarReceivedMessage');
+      messageContainer.innerHTML = event.message;
       
     })
 
@@ -33,6 +36,7 @@ function App() {
   return (
     <div id="nca-navbar-app-wrapper">
       NCA NAVBAR
+      <div id="navbarReceivedMessage"></div>
       <sci-router-outlet name="NAVBAR"></sci-router-outlet>
     </div>
   );

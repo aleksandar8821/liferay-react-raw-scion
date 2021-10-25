@@ -2,3 +2,7 @@
   background-color: rgb(44, 139, 184);
   color: white;
 }
+
+#nca-navbar-app-wrapper .flex-column > div {
+  padding: 15px !important;
+}
