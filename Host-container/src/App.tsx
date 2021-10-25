@@ -44,6 +44,14 @@ function App() {
     async function init() {
       // Start the platform
       await MicrofrontendPlatform.startHost(platformConfig, { symbolicName: 'host-app' });
+      
+      Beans.get(OutletRouter).navigate(`${localConstants.headerAppUrl}/header-app.html`, { outlet: 'HEADER' });
+      Beans.get(OutletRouter).navigate(`${localConstants.navbarAppUrl}/navbar-app.html`, { outlet: 'NAVBAR' });
+      // Beans.get(OutletRouter).navigate(`${localConstants.chartAppUrl}/index.html`, { outlet: 'MAIN-SCREEN-ASIDE' });
+      Beans.get(OutletRouter).navigate(`${localConstants.capitalAppUrl}/index.html`);
+
+      Beans.get(OutletRouter).navigate(`${localConstants.chartAppUrl}/index.html`, { outlet: 'CHART' });
+      Beans.get(OutletRouter).navigate(`${localConstants.transactionAppUrl}/index.html`, { outlet: 'MAIN-SCREEN-ASIDE' });
 
       const topic = 'mybank/:any/:any'
 
@@ -56,21 +64,12 @@ function App() {
         Beans.get(MessageClient).publish(topic, event.message);
 
       })
-  
 
       Beans.get(MessageClient).observe$(topic).subscribe((message: TopicMessage) => {
         console.log('Host topic message', message);
 
         sendToHeader(message);
       });
-
-      Beans.get(OutletRouter).navigate(`${localConstants.headerAppUrl}/header-app.html`, { outlet: 'HEADER' });
-      Beans.get(OutletRouter).navigate(`${localConstants.navbarAppUrl}/navbar-app.html`, { outlet: 'NAVBAR' });
-      // Beans.get(OutletRouter).navigate(`${localConstants.chartAppUrl}/index.html`, { outlet: 'MAIN-SCREEN-ASIDE' });
-      Beans.get(OutletRouter).navigate(`${localConstants.capitalAppUrl}/index.html`);
-
-      Beans.get(OutletRouter).navigate(`${localConstants.chartAppUrl}/index.html`, { outlet: 'CHART' });
-      Beans.get(OutletRouter).navigate(`${localConstants.transactionAppUrl}/index.html`, { outlet: 'MAIN-SCREEN-ASIDE' });
     
     }
 
@@ -95,7 +94,7 @@ function App() {
   }
 
   return (
-    <div id="nca-host-app-wrapper" onClick={handleClick} style={{ cursor: 'pointer' }}>
+    <div id="nca-host-app-wrapper" className="portlet-wrapper" onClick={handleClick} style={{ cursor: 'pointer' }}>
       <div id="hostReceivedMessage"></div>
 
       <span>NCA HOST</span>

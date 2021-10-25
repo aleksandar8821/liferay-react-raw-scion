@@ -37,7 +37,7 @@ function App() {
     <div id="nca-navbar-app-wrapper" className="portlet-wrapper">
       NCA NAVBAR
       <div id="navbarReceivedMessage"></div>
-      <sci-router-outlet name="NAVBAR"></sci-router-outlet>
+      <sci-router-outlet name="NAVBAR" id="navbar-router-outlet"></sci-router-outlet>
     </div>
   );
 }
